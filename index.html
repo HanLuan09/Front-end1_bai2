@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            background: linear-gradient(to right, #3525af, #9153c9);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        #main {
+            width: 500px;
+            height: 500px;
+            background-color: #ccc;
+        }
+        h1 {
+            margin-top: 20px;
+            margin-left: 35%;
+            color: blue;
+        }
+
+        .showText, .sum {
+            margin-left: 150px;
+            margin-top: 20px;
+        }
+
+        .showText #first,
+        .showText #second,
+        .showText #result {
+            width: 200px;
+            height: 30px;
+            font-size: 1em;
+        }
+        .sum .buttonSum {
+            background-color: aqua;
+            width: 25px;
+            height: 25px;
+            font-size: 1em;
+        }
+        #dialog {
+            margin-left: 150px;
+            margin-top: 5px;
+            color: red;
+            display: none;
+        }
+        .showText p {
+            margin-top: 0;
+            margin-bottom: 5px;
+            font-size: 1.2em;
+        }
+    </style>
+
+    <script>
+        function checkNumber(s){
+            if(s.length==0) return false;
+            for(let i=0; i< s.length; i++){
+                if( '0'< s[i] && s[i]>'9') return false;
+            }
+            return true;
+        }
+        const onClickFunction = () => {
+            const a = document.getElementById("first").value;
+            const b = document.getElementById("second").value;
+            const tb = document.getElementById("dialog");
+            if(!checkNumber(a) || !checkNumber(b)){
+                console.log("None!");
+                tb.style.display = "inline-block";
+                document.getElementById("result").value = "None!";
+                document.getElementById("result").style.color = "red";
+            }
+            else{
+                const kq = Number(a)+Number(b);
+                console.log(kq);
+                document.getElementById("result").value = kq;
+                tb.style.display = "none";
+                document.getElementById("result").style.color = "black";
+            }
+        }
+
+    </script>
+</head>
+<body>
+    <div id="main">
+        <h1>Phép cộng</h1>
+        <div class="showText">
+            <p>First Number:</p>
+            <input type="text" id="first">
+        </div>
+        <div class="showText">
+            <p>Second Number:</p>
+            <input type="text" id="second">
+        </div>
+        <div class="sum">
+            <button class="buttonSum" onclick="onClickFunction()">+</button>
+        </div>
+        <div class="showText">
+            <p>Result:</p>
+            <input type="text" id="result" value="0" disabled>
+        </div> 
+        <p id="dialog">Phép toán bị lỗi!</p>
+    </div>
+</body>
+</html>
